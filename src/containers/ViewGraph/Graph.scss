@@ -1,0 +1,22 @@
+.view-graph{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 90vh;
+
+    .left-page{
+        flex: 0 0 20%;
+        border:  1px solid black;
+    }
+    
+    .middle-page{
+        flex: 0 0 60%;
+    }
+
+    .right-page{
+        flex: 0 0 20%;
+        border:  1px solid white;
+        background-color: whitesmoke;
+    }
+    
+}
