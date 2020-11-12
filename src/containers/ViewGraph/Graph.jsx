@@ -10,9 +10,9 @@ const Graph = () => {
     const viewGraph = useSelector(state => state.view);
     // const copyStore = Object.assign({}, viewGraph);
     const dispatch = useDispatch();
-    const [id] = useState(0);
+    // const [id] = useState(0);
     const [name, setName] = useState("abc");
-    const [x, setX] = useState(250);
+    const [x, setX] = useState(20);
     const [y, setY] = useState(5);
     const [width, setWidth] = useState(50);
     const [height, setHeight] = useState(50);
@@ -32,15 +32,15 @@ const Graph = () => {
 
 
         handleUserChange: {
-            onChangeName: (e) => setName(e.target.value),
-            onChangeX: (e) => setX(e.target.value),
-            onChangeY: (e) => setY(e.target.value),
-            onChangeWidth: (e) => setWidth(e.target.value),
-            onChangeHeight: (e) => setHeight(e.target.value),
+            onChangeName: (e) => setName(e.target.value)&& e.preventDefault(),
+            onChangeX: (e) => setX(e.target.value)&& e.preventDefault(),
+            onChangeY: (e) => setY(e.target.value)&& e.preventDefault(),
+            onChangeWidth: (e) => setWidth(e.target.value)&& e.preventDefault(),
+            onChangeHeight: (e) => setHeight(e.target.value)&& e.preventDefault(),
         },
 
         handleUserKeyDown : {
-            onUserKeyDown : (e) => `${/[\+\-\.\,]$/}` && e.preventDefault()
+            onUserKeyDown : (e) => /[^0-9]/.test(e.key) && e.preventDefault()
         }
 
     }
@@ -54,13 +54,19 @@ const Graph = () => {
         <div className="view-graph">
             <LeftPaget />
             <MiddlePage 
-            id = {id}
+            // id = {id}
             destailGraph={viewGraph}
             nameGraph={name}
             xGraph={x}
             yGraph = {y}
             withGraph = {width}
             heightGraph = {height}
+            onUp={onHandleUp}
+            onDown={onHanleDown}
+            onLeft={onHandleLeft}
+            onRight={onHandleRight}
+            onZoom={onHandleZoom}
+            onUnZoom={onHandleUnZoom}
             />
             <RightPage
             handleChangeName={handleUserClicked.handleUserChange.onChangeName}

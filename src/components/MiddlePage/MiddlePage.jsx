@@ -9,6 +9,12 @@ const MiddlePage = ({
     yGraph,
     withGraph,
     heightGraph,
+    onUp,
+    onDown,
+    onLeft,
+    onRight,
+    onZoom,
+    onUnZoom,
 
     }) => {
     // console.log(destailGraph)
@@ -25,6 +31,12 @@ const MiddlePage = ({
                 verticalY= {yGraph}
                 widthShape = { withGraph}
                 heightShape = {heightGraph} 
+                onUp={onUp}
+                onDown={onDown}
+                onLeft={onLeft}
+                onRight={onRight}
+                onZoom={onZoom}
+                onUnZoom={onUnZoom}
                 />
             )}
             )

@@ -8,7 +8,7 @@ const ShapeControl = ({type, placeholder, handleChange, value, onKeyDown }) => {
                 onChange = {handleChange}
                 required
                 value={value}
-                onKeyDown = {onKeyDown}
+                onKeyPress = {onKeyDown}
         />
     )
 }

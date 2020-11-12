@@ -26,7 +26,7 @@ const RightPage = ({
             </div>
             <div className="user-control handle-input-X">
                 <span>X</span>
-                <ShapeInput type="number" 
+                <ShapeInput type="text" 
                  placeholder={valueX} 
                  handleChange={handleChangeX} 
                  value={valueX} 
@@ -34,21 +34,21 @@ const RightPage = ({
             </div>
             <div className="user-control handle-input-Y">
                 <span>Y</span>
-                <ShapeInput type="number"  
+                <ShapeInput type="text"  
                 handleChange={handleChangeY} 
                 value={valueY} 
                 onKeyDown={onKeyDown}/>
             </div>
             <div className="user-control handle-input-width">
                 <span>Width</span>
-                <ShapeInput type="number" 
+                <ShapeInput type="text" 
                  handleChange={handleChangeWidth} 
                  value={valueWidth}
                  onKeyDown={onKeyDown} />
             </div>
             <div className="user-control handle-input-height">
                 <span>Height</span>
-                <ShapeInput type="number"
+                <ShapeInput type="text"
                 handleChange={handleChangeHeight}
                  value={valueHeight}
                  onKeyDown={onKeyDown} />
