@@ -14,7 +14,8 @@ const RightPage = ({
     valueWidth,
     handleChangeHeight,
     valueHeight,
-    handleUserClick
+    handleUserClick,
+    onKeyDown
 }) => {
     return (
         <div className="right-page">
@@ -25,21 +26,35 @@ const RightPage = ({
             </div>
             <div className="user-control handle-input-X">
                 <span>X</span>
-                <ShapeInput type="number"  handleChange={handleChangeX} value={valueX} />
+                <ShapeInput type="number" 
+                 placeholder={valueX} 
+                 handleChange={handleChangeX} 
+                 value={valueX} 
+                 onKeyDown={onKeyDown}/>
             </div>
             <div className="user-control handle-input-Y">
                 <span>Y</span>
-                <ShapeInput type="number"  handleChange={handleChangeY} value={valueY} />
+                <ShapeInput type="number"  
+                handleChange={handleChangeY} 
+                value={valueY} 
+                onKeyDown={onKeyDown}/>
             </div>
             <div className="user-control handle-input-width">
                 <span>Width</span>
-                <ShapeInput type="number"  handleChange={handleChangeWidth} value={valueWidth} />
+                <ShapeInput type="number" 
+                 handleChange={handleChangeWidth} 
+                 value={valueWidth}
+                 onKeyDown={onKeyDown} />
             </div>
             <div className="user-control handle-input-height">
                 <span>Height</span>
-                <ShapeInput type="number"  handleChange={handleChangeHeight} value={valueHeight} />
+                <ShapeInput type="number"
+                handleChange={handleChangeHeight}
+                 value={valueHeight}
+                 onKeyDown={onKeyDown} />
             </div>
-            <ShapeButton label="Add" handleClick={handleUserClick}/>
+            <ShapeButton label="Add"
+             handleClick={handleUserClick}/>
         </div>
     )
 }

@@ -7,14 +7,15 @@ import RightPage from '../../components/RightPage/RightPage'
 import "./Graph.scss"
 
 const Graph = () => {
-    const viewGraph = useSelector(state => state.view.graph);
+    const viewGraph = useSelector(state => state.view);
     // const copyStore = Object.assign({}, viewGraph);
     const dispatch = useDispatch();
-    const [name, setName] = useState("");
-    const [X, setX] = useState(0);
-    const [Y, setY] = useState(0);
-    const [width, setWidth] = useState(0);
-    const [height, setHeight] = useState(0);
+    const [id] = useState(0);
+    const [name, setName] = useState("abc");
+    const [x, setX] = useState(250);
+    const [y, setY] = useState(5);
+    const [width, setWidth] = useState(50);
+    const [height, setHeight] = useState(50);
     
     const handleUserClicked = {
 
@@ -22,10 +23,10 @@ const Graph = () => {
             onAddShape : () => dispatch({
                 type: actionTypes.active.ADD, 
                 name: name, 
-                X: parseInt(X), 
-                Y: parseInt(Y), 
-                width: parseInt(width), 
-                height: parseInt(height),
+                X: x, 
+                Y: y, 
+                width: width, 
+                height: height,
             }),
         },
 
@@ -36,11 +37,14 @@ const Graph = () => {
             onChangeY: (e) => setY(e.target.value),
             onChangeWidth: (e) => setWidth(e.target.value),
             onChangeHeight: (e) => setHeight(e.target.value),
+        },
+
+        handleUserKeyDown : {
+            onUserKeyDown : (e) => `${/[\+\-\.\,]$/}` && e.preventDefault()
         }
 
     }
 
-    console.log(viewGraph);  
 
     // const shapeStyle = {
     //     clip-path: actionTypes.shape.Triangle,
@@ -50,20 +54,27 @@ const Graph = () => {
         <div className="view-graph">
             <LeftPaget />
             <MiddlePage 
-            DestailGraph={viewGraph}
+            id = {id}
+            destailGraph={viewGraph}
+            nameGraph={name}
+            xGraph={x}
+            yGraph = {y}
+            withGraph = {width}
+            heightGraph = {height}
             />
             <RightPage
             handleChangeName={handleUserClicked.handleUserChange.onChangeName}
             valueName={name}
             handleChangeX={handleUserClicked.handleUserChange.onChangeX}
-            valueX = {X}
+            valueX = {x}
             handleChangeY={handleUserClicked.handleUserChange.onChangeY}
-            valueY={Y}
+            valueY={y}
             handleChangeWidth={handleUserClicked.handleUserChange.onChangeWidth}
             valueWidth={width}
             handleChangeHeight={handleUserClicked.handleUserChange.onChangeHeight}
             valueHeight={height}
             handleUserClick = {handleUserClicked.handleUserDispatch.onAddShape}
+            onKeyDown = {handleUserClicked.handleUserKeyDown.onUserKeyDown}
             />
 
         </div>

@@ -1,31 +1,32 @@
 import * as actionTypes from "./action"
 
-const initialState = {
-    graph: {
-        id: Math.floor(Math.random()*100),
-        Shape : '',
-        Title: '',
-        X : 0,
-        Y : 0,
-        Width: 0,
-        Height: 0,
-    }
-};
 
-export default (state = initialState, action) => {
+
+const initialState = [
+  {id: Number, Title:String, X: Number, Y: Number, Width:Number, Height:Number},
+];
+
+// const [state, setstate] = useState(initialState)
+
+const reducer = (state = initialState , action) => {
     switch (action.type) {
 
     case actionTypes.active.ADD:
-        return { 
-            ...state,
-            Title : action.name,
-            X : action.X,
-            Y: action.Y,
-            Width: action.width,
-            Height: action.height,
-        }
 
+      const newState = {
+        id: Math.floor(Math.random()*100),
+        Title : action.name,
+        X : action.x,
+        Y: action.y,
+        Width: action.with,
+        Height: action.height,
+      }
+      setTimeout(()=> {state.push(newState);},1000)
+      return state
+      // state[0]
     default:
         return state
     }
 }
+
+export default reducer
