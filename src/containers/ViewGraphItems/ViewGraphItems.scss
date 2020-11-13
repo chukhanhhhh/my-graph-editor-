@@ -1,7 +1,13 @@
 @import 'antd/dist/antd.css';
 
 .view-graph-item{
-
+    position: fixed;
     border: 1px solid black ;
+
+    .ant-dropdown-trigger {
+        span {
+            cursor: pointer !important;
+        }
+    }
 
 }

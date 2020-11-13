@@ -1,14 +1,14 @@
 import React from 'react'
 import "./ShapeInput.scss"
 
-const ShapeControl = ({type, placeholder, handleChange, value, onKeyDown }) => {
+const ShapeControl = ({type, placeholder, handleChange, value, onKeyPress }) => {
     return (
         <input type={type}
                 placeholder={placeholder}
                 onChange = {handleChange}
-                required
+                // required
                 value={value}
-                onKeyPress = {onKeyDown}
+                onKeyPress = {onKeyPress}
         />
     )
 }

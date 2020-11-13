@@ -6,9 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import GraphReducer from '../src/store/reducer'
+import GraphResult from '../src/store/result'
 
 const rootRedcer = combineReducers({
-  view : GraphReducer
+  view : GraphReducer,
+  result :GraphResult
 });
 
 const store = createStore(rootRedcer);

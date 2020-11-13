@@ -8,31 +8,38 @@ import "./Graph.scss"
 
 const Graph = () => {
     const viewGraph = useSelector(state => state.view);
-    // const copyStore = Object.assign({}, viewGraph);
+    // const resultGraph = useSelector(state => state.result)
     const dispatch = useDispatch();
-    // const [id] = useState(0);
+    // const copyStore = Object.assign({}, viewGraph);
+    // const [data, setData] = useState(viewGraph);
+    const [temp] = useState(10);
     const [name, setName] = useState("abcd");
     const [x, setX] = useState(20);
     const [y, setY] = useState(5);
     const [width, setWidth] = useState(50);
     const [height, setHeight] = useState(50);
+    // const [dbValue, saveToDb] = useState(''); 
     
     const handleUserClicked = {
 
         handleUserDispatch : {
-            onAddShape : () => dispatch({
-                type: actionTypes.active.ADD, 
-                name: name, 
-                x: x, 
-                y: y, 
-                width: width, 
-                height: height,
-            }),
-
-            onHandleUp: () => dispatch({type: actionTypes.active.UPY}),
-            onHanleDown: () => dispatch({type: actionTypes.active.DOWNY}),
-            onHandleLeft: () => dispatch({type: actionTypes.active.LEFTX}),
-            onHandleRight: () => dispatch({type: actionTypes.active.RIGHTX}),
+            onAddShape : (e) => {
+                e.preventDefault();
+                dispatch({
+                    type: actionTypes.active.ADD, 
+                    name: name, 
+                    x: parseInt(x), 
+                    y: parseInt(y), 
+                    width: parseInt(width), 
+                    height: parseInt(height),
+                // setData: () => setData(viewGraph)
+            })},
+            
+            onHandleDelete : () => dispatch({type: actionTypes.active.DELETE, key: 0}),            
+            onHandleLeft: () => dispatch({type: actionTypes.active.LEFT, temp: temp , key: 0}),
+            onHandleRight: () => dispatch({type: actionTypes.active.RIGHT, temp: temp}),
+            onHandleUp: () => dispatch({type: actionTypes.active.UP}),
+            onHanleDown: () => dispatch({type: actionTypes.active.DOWN}),
             onHandleIncrementWidth: () => dispatch({type: actionTypes.active.INCREMENTWIDTH}),
             onHandleDecrementWidth: () => dispatch({type: actionTypes.active.DECREMENTWIDTH}),
             onHandleIncrementHeight: () => dispatch({type: actionTypes.active.INCREMENTHEIGHT}),
@@ -42,28 +49,47 @@ const Graph = () => {
 
 
         handleUserChange: {
-            onChangeName: (e) => setName(e.target.value),
-            onChangeX: (e) => setX(e.target.value),
-            onChangeY: (e) => setY(e.target.value),
-            onChangeWidth: (e) => setWidth(e.target.value),
-            onChangeHeight: (e) => setHeight(e.target.value),
+            onChangeName: (e) => {
+                // e.preventDefault();
+                setName(e.target.value)
+            },
+            onChangeX: (e) => {
+                setX(e.target.value)
+               
+            },
+
+            onChangeY: (e) => {
+                setY(e.target.value)
+               
+
+            },
+            onChangeWidth: (e) => {
+                setWidth(e.target.value)
+               
+
+            },
+            onChangeHeight: (e) => {
+                setHeight(e.target.value)
+               
+
+            },
             
         },
 
         handleUserKeyDown : {
-            onUserKeyDown : (e) => /[^0-9]/.test(e.key) && e.preventDefault()
+            // onUserKeyPress : (e) => /[^0-9]/.test(e.key) 
+                // e.preventDefault();
+            
         }
 
     }
 
-
-    // const shapeStyle = {
-    //     clip-path: actionTypes.shape.Triangle,
-    // }
-
     return (
         <div className="view-graph">
-            <LeftPaget />
+            <LeftPaget 
+            countGraph={viewGraph}
+            onDelete = {handleUserClicked.handleUserDispatch.onHandleDelete}
+            />
             <MiddlePage 
             destailGraph={viewGraph}
             onUp={handleUserClicked.handleUserDispatch.onHandleUp}
@@ -87,7 +113,7 @@ const Graph = () => {
             handleChangeHeight={handleUserClicked.handleUserChange.onChangeHeight}
             valueHeight={height}
             handleUserClick = {handleUserClicked.handleUserDispatch.onAddShape}
-            onKeyDown = {handleUserClicked.handleUserKeyDown.onUserKeyDown}
+            onKeyPress = {handleUserClicked.handleUserKeyDown.onUserKeyPress}
             />
 
         </div>

@@ -24,13 +24,8 @@ const ViewGraphItems = ({
     onRight,
     onIncrementWidth,
     onDecrementWidth,
-    onIncrementHeight,
-    onDecrementHeight,
 }) => {
     
-    // const onHanleClick = (e) => {
-    //     e.preventDefault()
-    //   };
 
     const menu = (
         <Menu>
@@ -40,8 +35,8 @@ const ViewGraphItems = ({
           <Menu.Item key="4"><ArrowRightOutlined onClick={onRight}/></Menu.Item>
           <Menu.Item key="5"><FullscreenOutlined onClick={onIncrementWidth}/></Menu.Item>
           <Menu.Item key="6"><FullscreenExitOutlined onClick={onDecrementWidth}/></Menu.Item>
-          <Menu.Item key="7"><ShrinkOutlined onClick={onIncrementHeight}/></Menu.Item>
-          <Menu.Item key="8"><ArrowsAltOutlined onClick={onDecrementHeight}/></Menu.Item> 
+          <Menu.Item key="7"><ShrinkOutlined onClick={onIncrementWidth}/></Menu.Item>
+          <Menu.Item key="8"><ArrowsAltOutlined onClick={onDecrementWidth}/></Menu.Item> 
         </Menu>
     );
 
@@ -54,9 +49,9 @@ const ViewGraphItems = ({
                 }}
             >
             <Dropdown overlay={menu}>
-                <a className="ant-dropdown-link">
-                    {nameShape} 
-                </a>
+                <span className="ant-dropdown-link">
+                    <span>{nameShape} </span>
+                </span>
             </Dropdown> 
         </div>
     )

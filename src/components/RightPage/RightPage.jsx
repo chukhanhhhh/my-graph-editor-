@@ -15,7 +15,7 @@ const RightPage = ({
     handleChangeHeight,
     valueHeight,
     handleUserClick,
-    onKeyDown
+    onKeyPress
 }) => {
     return (
         <div className="right-page">
@@ -30,28 +30,28 @@ const RightPage = ({
                  placeholder={valueX} 
                  handleChange={handleChangeX} 
                  value={valueX} 
-                 onKeyDown={onKeyDown}/>
+                 onKeyPress={onKeyPress}/>
             </div>
             <div className="user-control handle-input-Y">
                 <span>Y</span>
                 <ShapeInput type="text"  
                 handleChange={handleChangeY} 
                 value={valueY} 
-                onKeyDown={onKeyDown}/>
+                onKeyPress={onKeyPress}/>
             </div>
             <div className="user-control handle-input-width">
                 <span>Width</span>
                 <ShapeInput type="text" 
                  handleChange={handleChangeWidth} 
                  value={valueWidth}
-                 onKeyDown={onKeyDown} />
+                 onKeyPress={onKeyPress} />
             </div>
             <div className="user-control handle-input-height">
                 <span>Height</span>
                 <ShapeInput type="text"
                 handleChange={handleChangeHeight}
                  value={valueHeight}
-                 onKeyDown={onKeyDown} />
+                 onKeyPress={onKeyPress} />
             </div>
             <ShapeButton label="Add"
              handleClick={handleUserClick}/>
