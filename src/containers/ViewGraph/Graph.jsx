@@ -11,7 +11,7 @@ const Graph = () => {
     // const copyStore = Object.assign({}, viewGraph);
     const dispatch = useDispatch();
     // const [id] = useState(0);
-    const [name, setName] = useState("abc");
+    const [name, setName] = useState("abcd");
     const [x, setX] = useState(20);
     const [y, setY] = useState(5);
     const [width, setWidth] = useState(50);
@@ -23,20 +23,31 @@ const Graph = () => {
             onAddShape : () => dispatch({
                 type: actionTypes.active.ADD, 
                 name: name, 
-                X: x, 
-                Y: y, 
+                x: x, 
+                y: y, 
                 width: width, 
                 height: height,
             }),
+
+            onHandleUp: () => dispatch({type: actionTypes.active.UPY}),
+            onHanleDown: () => dispatch({type: actionTypes.active.DOWNY}),
+            onHandleLeft: () => dispatch({type: actionTypes.active.LEFTX}),
+            onHandleRight: () => dispatch({type: actionTypes.active.RIGHTX}),
+            onHandleIncrementWidth: () => dispatch({type: actionTypes.active.INCREMENTWIDTH}),
+            onHandleDecrementWidth: () => dispatch({type: actionTypes.active.DECREMENTWIDTH}),
+            onHandleIncrementHeight: () => dispatch({type: actionTypes.active.INCREMENTHEIGHT}),
+            onHandleDecrementHeight: () => dispatch({type: actionTypes.active.DECREMENTHEIGHT}),
+
         },
 
 
         handleUserChange: {
-            onChangeName: (e) => setName(e.target.value)&& e.preventDefault(),
-            onChangeX: (e) => setX(e.target.value)&& e.preventDefault(),
-            onChangeY: (e) => setY(e.target.value)&& e.preventDefault(),
-            onChangeWidth: (e) => setWidth(e.target.value)&& e.preventDefault(),
-            onChangeHeight: (e) => setHeight(e.target.value)&& e.preventDefault(),
+            onChangeName: (e) => setName(e.target.value),
+            onChangeX: (e) => setX(e.target.value),
+            onChangeY: (e) => setY(e.target.value),
+            onChangeWidth: (e) => setWidth(e.target.value),
+            onChangeHeight: (e) => setHeight(e.target.value),
+            
         },
 
         handleUserKeyDown : {
@@ -54,19 +65,15 @@ const Graph = () => {
         <div className="view-graph">
             <LeftPaget />
             <MiddlePage 
-            // id = {id}
             destailGraph={viewGraph}
-            nameGraph={name}
-            xGraph={x}
-            yGraph = {y}
-            withGraph = {width}
-            heightGraph = {height}
-            onUp={onHandleUp}
-            onDown={onHanleDown}
-            onLeft={onHandleLeft}
-            onRight={onHandleRight}
-            onZoom={onHandleZoom}
-            onUnZoom={onHandleUnZoom}
+            onUp={handleUserClicked.handleUserDispatch.onHandleUp}
+            onDown={handleUserClicked.handleUserDispatch.onHanleDown}
+            onLeft={handleUserClicked.handleUserDispatch.onHandleLeft}
+            onRight={handleUserClicked.handleUserDispatch.onHandleRight}
+            onIncrementWidth={handleUserClicked.handleUserDispatch.onHandleIncrementWidth}
+            onDecrementWidth={handleUserClicked.handleUserDispatch.onHandleDecrementWidth}
+            onIncrementHeight={handleUserClicked.handleUserDispatch.onHandleIncrementHeight}
+            onDecrementHeight={handleUserClicked.handleUserDispatch.onHandleDecrementHeight}
             />
             <RightPage
             handleChangeName={handleUserClicked.handleUserChange.onChangeName}

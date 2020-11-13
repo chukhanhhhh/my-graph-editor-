@@ -4,18 +4,14 @@ import ViewGraphItems from '../../containers/ViewGraphItems/ViewGraphItems'
 import './MiddlePage.scss'
 const MiddlePage = ({
     destailGraph,
-    nameGraph,
-    xGraph,
-    yGraph,
-    withGraph,
-    heightGraph,
     onUp,
     onDown,
     onLeft,
     onRight,
-    onZoom,
-    onUnZoom,
-
+    onIncrementWidth,
+    onDecrementWidth,
+    onIncrementHeight,
+    onDecrementHeight,
     }) => {
     // console.log(destailGraph)
 
@@ -23,24 +19,25 @@ const MiddlePage = ({
         <div className="middle-page">
         {
             destailGraph.map((item) => {
-                return(
+                return (
                 <ViewGraphItems 
                 idShape= {item.id}
-                nameShape={nameGraph}
-                horizontalX = {xGraph}
-                verticalY= {yGraph}
-                widthShape = { withGraph}
-                heightShape = {heightGraph} 
+                nameShape={item.Title}
+                horizontalX = {item.X}
+                verticalY= {item.Y}
+                widthShape = {item.Width}
+                heightShape = {item.Height} 
                 onUp={onUp}
                 onDown={onDown}
                 onLeft={onLeft}
                 onRight={onRight}
-                onZoom={onZoom}
-                onUnZoom={onUnZoom}
+                onIncrementWidth={onIncrementWidth}
+                onDecrementWidth={onDecrementWidth}
+                onIncrementHeight={onIncrementHeight}
+                onDecrementHeight={onDecrementHeight}
                 />
-            )}
             )
-        
+            })
         } 
         </div>
     )
