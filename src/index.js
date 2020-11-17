@@ -10,7 +10,7 @@ import GraphResult from '../src/store/result'
 
 const rootRedcer = combineReducers({
   view : GraphReducer,
-  result :GraphResult
+  results :GraphResult
 });
 
 const store = createStore(rootRedcer);

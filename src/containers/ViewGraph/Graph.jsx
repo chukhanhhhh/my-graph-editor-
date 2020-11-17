@@ -1,17 +1,15 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import * as actionTypes from "../../store/action"
+import * as actionCreators from "../../store/action"
 import LeftPaget from '../../components/LeftPage/LeftPage'
 import MiddlePage from '../../components/MiddlePage/MiddlePage'
 import RightPage from '../../components/RightPage/RightPage'
 import "./Graph.scss"
 
 const Graph = () => {
-    const viewGraph = useSelector(state => state.view);
-    // const resultGraph = useSelector(state => state.result)
+    const  viewGraph = useSelector(state => state.view);
+    const resultGraph = useSelector(state => state.results)
     const dispatch = useDispatch();
-    // const copyStore = Object.assign({}, viewGraph);
-    // const [data, setData] = useState(viewGraph);
     const [temp] = useState(10);
     const [name, setName] = useState("abcd");
     const [x, setX] = useState(20);
@@ -20,100 +18,105 @@ const Graph = () => {
     const [height, setHeight] = useState(50);
     // const [dbValue, saveToDb] = useState(''); 
     
-    const handleUserClicked = {
 
-        handleUserDispatch : {
-            onAddShape : (e) => {
-                e.preventDefault();
-                dispatch({
-                    type: actionTypes.active.ADD, 
-                    name: name, 
-                    x: parseInt(x), 
-                    y: parseInt(y), 
-                    width: parseInt(width), 
-                    height: parseInt(height),
-                // setData: () => setData(viewGraph)
-            })},
+
+    const handleUserDispatch = {
+            onAddShape : () => dispatch(actionCreators.onAdd(
+                    name, 
+                    parseInt(x), 
+                    parseInt(y), 
+                    parseInt(width), 
+                    parseInt(height)
+                    )
+            ),
+
+            onCountShape : () => dispatch(actionCreators.storeResult(viewGraph)),
             
-            onHandleDelete : () => dispatch({type: actionTypes.active.DELETE, key: 0}),            
-            onHandleLeft: () => dispatch({type: actionTypes.active.LEFT, temp: temp , key: 0}),
-            onHandleRight: () => dispatch({type: actionTypes.active.RIGHT, temp: temp}),
-            onHandleUp: () => dispatch({type: actionTypes.active.UP}),
-            onHanleDown: () => dispatch({type: actionTypes.active.DOWN}),
-            onHandleIncrementWidth: () => dispatch({type: actionTypes.active.INCREMENTWIDTH}),
-            onHandleDecrementWidth: () => dispatch({type: actionTypes.active.DECREMENTWIDTH}),
-            onHandleIncrementHeight: () => dispatch({type: actionTypes.active.INCREMENTHEIGHT}),
-            onHandleDecrementHeight: () => dispatch({type: actionTypes.active.DECREMENTHEIGHT}),
+            onHandleDelete : () => dispatch(),            
+            onHandleLeft: () => dispatch(),
+            onHandleRight: () => dispatch(),
+            onHandleUp: () => dispatch(),
+            onHanleDown: () => dispatch(),
+            onHandleIncrementWidth: () => dispatch(),
+            onHandleDecrementWidth: () => dispatch(),
+            onHandleIncrementHeight: () => dispatch(),
+            onHandleDecrementHeight: () => dispatch(),
 
-        },
+        }
 
 
-        handleUserChange: {
+    const handleUserChange = {
             onChangeName: (e) => {
-                // e.preventDefault();
+                e.preventDefault();
                 setName(e.target.value)
             },
             onChangeX: (e) => {
+                e.preventDefault();
                 setX(e.target.value)
                
             },
 
             onChangeY: (e) => {
+                e.preventDefault();
                 setY(e.target.value)
                
 
             },
             onChangeWidth: (e) => {
+                e.preventDefault();
                 setWidth(e.target.value)
                
 
             },
             onChangeHeight: (e) => {
+                e.preventDefault();
                 setHeight(e.target.value)
                
 
             },
             
-        },
+        }
 
-        handleUserKeyDown : {
+const handleUserKeyDown = {
             // onUserKeyPress : (e) => /[^0-9]/.test(e.key) 
                 // e.preventDefault();
             
         }
 
-    }
+
+    console.log(viewGraph);
+    console.log(resultGraph.results);
 
     return (
         <div className="view-graph">
             <LeftPaget 
-            countGraph={viewGraph}
-            onDelete = {handleUserClicked.handleUserDispatch.onHandleDelete}
+            countGraph={resultGraph.results}
+            onDelete = {handleUserDispatch.onHandleDelete}
             />
             <MiddlePage 
-            destailGraph={viewGraph}
-            onUp={handleUserClicked.handleUserDispatch.onHandleUp}
-            onDown={handleUserClicked.handleUserDispatch.onHanleDown}
-            onLeft={handleUserClicked.handleUserDispatch.onHandleLeft}
-            onRight={handleUserClicked.handleUserDispatch.onHandleRight}
-            onIncrementWidth={handleUserClicked.handleUserDispatch.onHandleIncrementWidth}
-            onDecrementWidth={handleUserClicked.handleUserDispatch.onHandleDecrementWidth}
-            onIncrementHeight={handleUserClicked.handleUserDispatch.onHandleIncrementHeight}
-            onDecrementHeight={handleUserClicked.handleUserDispatch.onHandleDecrementHeight}
+            destailGraph={resultGraph.results}
+            onUp={handleUserDispatch.onHandleUp}
+            onDown={handleUserDispatch.onHanleDown}
+            onLeft={handleUserDispatch.onHandleLeft}
+            onRight={handleUserDispatch.onHandleRight}
+            onIncrementWidth={handleUserDispatch.onHandleIncrementWidth}
+            onDecrementWidth={handleUserDispatch.onHandleDecrementWidth}
+            onIncrementHeight={handleUserDispatch.onHandleIncrementHeight}
+            onDecrementHeight={handleUserDispatch.onHandleDecrementHeight}
             />
             <RightPage
-            handleChangeName={handleUserClicked.handleUserChange.onChangeName}
+            handleChangeName={handleUserChange.onChangeName}
             valueName={name}
-            handleChangeX={handleUserClicked.handleUserChange.onChangeX}
+            handleChangeX={handleUserChange.onChangeX}
             valueX = {x}
-            handleChangeY={handleUserClicked.handleUserChange.onChangeY}
+            handleChangeY={handleUserChange.onChangeY}
             valueY={y}
-            handleChangeWidth={handleUserClicked.handleUserChange.onChangeWidth}
+            handleChangeWidth={handleUserChange.onChangeWidth}
             valueWidth={width}
-            handleChangeHeight={handleUserClicked.handleUserChange.onChangeHeight}
+            handleChangeHeight={handleUserChange.onChangeHeight}
             valueHeight={height}
-            handleUserClick = {handleUserClicked.handleUserDispatch.onAddShape}
-            onKeyPress = {handleUserClicked.handleUserKeyDown.onUserKeyPress}
+            handleUserClick = {handleUserDispatch.onCountShape}
+            onKeyPress = {handleUserKeyDown.onUserKeyPress}
             />
 
         </div>

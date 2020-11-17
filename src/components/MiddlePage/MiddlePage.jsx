@@ -13,13 +13,13 @@ const MiddlePage = ({
     onIncrementHeight,
     onDecrementHeight,
     }) => {
-    // console.log(destailGraph)
+        
+    console.log(destailGraph)
 
     return (
         <div className="middle-page">
         {
-            destailGraph.map((item) => {
-                return (
+            destailGraph.map((item) => (
                     <ViewGraphItems 
                     item = {item}
                     idShape= {item.id}
@@ -37,8 +37,7 @@ const MiddlePage = ({
                     onIncrementHeight={onIncrementHeight}
                     onDecrementHeight={onDecrementHeight}
                     />
-                )
-            })
+            ))
         } 
         </div>
     )

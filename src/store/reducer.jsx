@@ -4,7 +4,7 @@ import * as actionTypes from "./action"
 
 const initialState = [
   {id: 0, Title:'abc', X: 50, Y: 10, Width: 70, Height: 70},
-  {id: 1, Title:'abcedf', X: 600, Y: 20, Width: 80, Height: 80},
+  {id: 1, Title:'abcedf', X: 600, Y: 20, Width: 100, Height: 100},
 ];
 
 // const [state, setstate] = useState(initialState)
@@ -17,32 +17,24 @@ const reducer = (state = initialState , action) => {
 
       var newState = {
         id: Math.floor(Math.random()*100),
-        Title : action.name,
-        X : action.x,
-        Y: action.y,
-        Width: action.width,
-        Height: action.height,
+        Title : action.value.title,
+        X : action.value.x,
+        Y: action.value.y,
+        Width: action.value.width,
+        Height: action.value.height,
       }
-      state.push(newState);
+      state.concat(newState)
       console.log(state)
       // setData(state)
-      return state
+      return  state
       // return state.push(newState);
     // break;  
 
     case actionTypes.active.DELETE:
-      const delData = [...state]
-      // const index = delData.map((data) => {
-      //   console.log(data)
-      //   const find = [...data]
-      //   find.filter((value) => value.id === action.key)
-      // })
-      const index = delData.filter((data) =>data.id === action.key );
-      if(index <= -1) return;
-      // console.log(action.key);
-      state.slice(index, 1);
-      // console.log(state)
-      // return state;
+      // const delData = [...state]
+      // const index = delData.filter((data) =>data.id === action.key );
+      // if(index <= -1) return;
+      // state.slice(index, 1);
       return state
     // break;  
 
